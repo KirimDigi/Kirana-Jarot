@@ -1,0 +1,132 @@
+Uri: https://amfdigitalstudio-story.com/fonts/against/style.css
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\fonts\against\style.css
+Content Type: text/css
+
+Uri: https://amfdigitalstudio-story.com/fonts/brittany_signature/BrittanySignature.css
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\fonts\brittany_signature\BrittanySignature.css
+Content Type: text/css
+
+Uri: https://amfdigitalstudio-story.com/fonts/heatwood/Heatwood.css
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\fonts\heatwood\Heatwood.css
+Content Type: text/css
+
+Uri: https://amfdigitalstudio-story.com/fonts/photograph_signature/fonts.css
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\fonts\photograph_signature\fonts.css
+Content Type: text/css
+
+Uri: https://amfdigitalstudio-story.com/images/btn_app_store.png
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\images\btn_app_store.png
+Content Type: image/png
+
+Uri: https://amfdigitalstudio-story.com/images/btn_play_store.png
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\images\btn_play_store.png
+Content Type: image/png
+
+Uri: https://amfdigitalstudio-story.com/images/no-image.jpg
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\images\no-image.jpg
+Content Type: image/jpeg
+
+Uri: https://amfdigitalstudio-story.com/plugins/animate.css@4.1.1/animate.min.css
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\plugins\animate.css@4.1.1\animate.min.css
+Content Type: text/css
+
+Uri: https://amfdigitalstudio-story.com/preview/soft-brown
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\preview\soft-brown.html
+Content Type: text/html
+
+Uri: https://amfdigitalstudio-story.com/themes/soft-brown/bg.webp
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\themes\soft-brown\bg.webp
+Content Type: image/webp
+
+Uri: https://amfdigitalstudio-story.com/themes/soft-brown/bl.webp
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\themes\soft-brown\bl.webp
+Content Type: image/webp
+
+Uri: https://amfdigitalstudio-story.com/themes/soft-brown/br.webp
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\themes\soft-brown\br.webp
+Content Type: image/webp
+
+Uri: https://amfdigitalstudio-story.com/themes/soft-brown/tl.webp
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\themes\soft-brown\tl.webp
+Content Type: image/webp
+
+Uri: https://amfdigitalstudio-story.com/themes/soft-brown/tr.webp
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\themes\soft-brown\tr.webp
+Content Type: image/webp
+
+Uri: https://amfdigitalstudio-story.com/themes/theme-app.js?v=260626
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\themes\theme-app.js
+Content Type: application/javascript
+
+Uri: https://amfdigitalstudio-story.com/themes/themesv2.js?v=260626
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\themes\themesv2.js
+Content Type: application/javascript
+
+Uri: https://fonts.googleapis.com/css2?family=Gwendolyn:wght@400;700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\css2
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/gwendolyn/v9/qkBSXvoO_M3CSss-d7emWLtvmA.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\gwendolyn\v9\qkBSXvoO_M3CSss-d7emWLtvmA.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/gwendolyn/v9/qkBXXvoO_M3CSss-d7ee5A.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\gwendolyn\v9\qkBXXvoO_M3CSss-d7ee5A.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787weuyJG.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\lora\v37\0QI6MX1D_JOuGQbT0gvTJPa787weuyJG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787wsuyJG.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\lora\v37\0QI6MX1D_JOuGQbT0gvTJPa787wsuyJG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787z5vCJG.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\lora\v37\0QI6MX1D_JOuGQbT0gvTJPa787z5vCJG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/lora/v37/0QI6MX1D_JOuGQbT0gvTJPa787zAvCJG.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\lora\v37\0QI6MX1D_JOuGQbT0gvTJPa787zAvCJG.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/lora/v37/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-BQCkqg.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\lora\v37\0QI8MX1D_JOuMw_hLdO6T2wV9KnW-BQCkqg.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/lora/v37/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-C0Ckqg.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\lora\v37\0QI8MX1D_JOuMw_hLdO6T2wV9KnW-C0Ckqg.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/lora/v37/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFkqg.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\lora\v37\0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFkqg.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/lora/v37/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-PgFkqg.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\s\lora\v37\0QI8MX1D_JOuMw_hLdO6T2wV9KnW-PgFkqg.ttf
+Content Type: font/ttf
+
+Uri: https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\beacon.min.js\v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495
+Content Type: text/javascript
+
+Uri: https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/Phosphor-Fill.svg
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\@phosphor-icons\web@2.0.3\src\fill\Phosphor-Fill.svg
+Content Type: image/svg+xml
+
+Uri: https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/Phosphor-Fill.ttf
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\@phosphor-icons\web@2.0.3\src\fill\Phosphor-Fill.ttf
+Content Type: font/ttf
+
+Uri: https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/Phosphor-Fill.woff
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\@phosphor-icons\web@2.0.3\src\fill\Phosphor-Fill.woff
+Content Type: font/woff
+
+Uri: https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/Phosphor-Fill.woff2
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\@phosphor-icons\web@2.0.3\src\fill\Phosphor-Fill.woff2
+Content Type: font/woff2
+
+Uri: https://unpkg.com/@phosphor-icons/web@2.0.3/src/fill/style.css
+File Name: C:\Downloaded Web Sites\amfdigitalstudio-story.com\@phosphor-icons\web@2.0.3\src\fill\style.css
+Content Type: text/css
+

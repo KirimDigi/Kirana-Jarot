@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'Against';
+    src: url('against-regular.woff2') format('woff2'),
+         url('against-regular.woff') format('woff'),
+         url('against-regular.ttf')  format('truetype');
+}
