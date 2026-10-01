@@ -65,19 +65,26 @@ function doPost(e) {
 }
 
 /**
- * Helper untuk memproses penyimpanan ke sheet
+ * Helper untuk memproses penyimpanan ke sheet (Aman dari error null/undefined)
  */
 function handleSubmission(data) {
+  if (!data || typeof data !== "object") {
+    data = {};
+  }
+
   var sheet = getSheet();
   ensureHeader(sheet);
 
   var now = new Date();
   var timestampStr = Utilities.formatDate(now, "Asia/Jakarta", "dd/MM/yyyy HH:mm:ss");
 
-  var namaTamu = (data.nama || data.nama_tamu || data["nama tamu"] || "Tamu Undangan").toString().trim();
-  var ucapan = (data.ucapan || data.pesan || data.doa || "-").toString().trim();
-  var konfirmasi = (data.kehadiran || data.konfirmasi || data["konfirmasi kehadiran"] || "Hadir").toString().trim();
-  var jumlahTamu = (konfirmasi.toLowerCase().indexOf("tidak") !== -1) ? "0" : (data.jumlah || data.jumlah_tamu || data["jumlah tamu"] || "1");
+  var namaTamu = String(data.nama || data.nama_tamu || data["nama tamu"] || "Tamu Undangan").trim();
+  var ucapan = String(data.ucapan || data.pesan || data.doa || "-").trim();
+  var konfirmasi = String(data.kehadiran || data.konfirmasi || data["konfirmasi kehadiran"] || "Hadir").trim();
+  
+  // Jika Tidak Hadir, otomatis set jumlah tamu ke 0
+  var isTidakHadir = konfirmasi.toLowerCase().indexOf("tidak") !== -1;
+  var jumlahTamu = isTidakHadir ? "0" : String(data.jumlah || data.jumlah_tamu || data["jumlah tamu"] || "1").trim();
 
   // Tambahkan baris baru sesuai urutan kolom yang diminta
   sheet.appendRow([
@@ -111,7 +118,7 @@ function handleGetWishes() {
   var values = sheet.getDataRange().getValues();
 
   // Jika hanya ada header
-  if (values.length <= 1) {
+  if (!values || values.length <= 1) {
     return createJsonResponse({
       status: "success",
       total: 0,
@@ -125,6 +132,8 @@ function handleGetWishes() {
   // Tampilkan urutan dari yang terbaru (paling bawah) ke terlama
   for (var i = rows.length - 1; i >= 0; i--) {
     var row = rows[i];
+    if (!row || row.length === 0) continue;
+
     var timestamp = row[0];
     var namaTamu = row[1];
     var ucapan = row[2];
@@ -134,7 +143,11 @@ function handleGetWishes() {
     if (namaTamu || ucapan) {
       var formattedTime = "";
       if (timestamp instanceof Date) {
-        formattedTime = Utilities.formatDate(timestamp, "Asia/Jakarta", "dd MMM yyyy, HH:mm");
+        try {
+          formattedTime = Utilities.formatDate(timestamp, "Asia/Jakarta", "dd MMM yyyy, HH:mm");
+        } catch (err) {
+          formattedTime = String(timestamp || "");
+        }
       } else {
         formattedTime = String(timestamp || "");
       }
@@ -144,7 +157,7 @@ function handleGetWishes() {
         nama: String(namaTamu || "").trim(),
         ucapan: String(ucapan || "").trim(),
         kehadiran: String(konfirmasi || "").trim(),
-        jumlah: jumlahTamu || 1
+        jumlah: jumlahTamu !== undefined && jumlahTamu !== null ? String(jumlahTamu) : "1"
       });
     }
   }
@@ -157,14 +170,25 @@ function handleGetWishes() {
 }
 
 /**
- * Ambil Sheet berdasarkan Spreadsheet ID & Sheet Name
+ * Ambil Sheet secara fleksibel (support getActiveSpreadsheet maupun openById)
  */
 function getSheet() {
-  var ss;
-  if (SPREADSHEET_ID && SPREADSHEET_ID.length > 10) {
-    ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  } else {
+  var ss = null;
+
+  // Coba ambil active spreadsheet terlebih dahulu (jika script dibuat dari menu Extensions sheet)
+  try {
     ss = SpreadsheetApp.getActiveSpreadsheet();
+  } catch (err) {}
+
+  // Fallback gunakan openById jika belum dapat
+  if (!ss && SPREADSHEET_ID) {
+    try {
+      ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    } catch (err) {}
+  }
+
+  if (!ss) {
+    throw new Error("Spreadsheet tidak ditemukan. Pastikan SPREADSHEET_ID sudah benar.");
   }
 
   var sheet = ss.getSheetByName(SHEET_NAME);
@@ -188,7 +212,7 @@ function ensureHeader(sheet) {
     ];
     sheet.appendRow(headers);
 
-    // Format header agar rapi
+    // Format header
     var headerRange = sheet.getRange(1, 1, 1, 5);
     headerRange.setFontWeight("bold");
     headerRange.setBackground("#9c8366");
@@ -198,7 +222,7 @@ function ensureHeader(sheet) {
 }
 
 /**
- * Helper untuk format response JSON dengan CORS header
+ * Helper untuk format response JSON dengan header CORS
  */
 function createJsonResponse(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj))
@@ -206,10 +230,19 @@ function createJsonResponse(obj) {
 }
 
 /**
- * FUNGSI SETUP (Jalankan sekali jika ingin inisialisasi sheet secara otomatis)
+ * FUNGSI TEST (Bisa dijalankan langsung di editor Apps Script untuk uji coba)
  */
-function setupSheet() {
-  var sheet = getSheet();
-  ensureHeader(sheet);
-  Logger.log("Inisialisasi sheet selesai!");
+function testBacaData() {
+  var hasil = handleGetWishes();
+  Logger.log(hasil.getContent());
+}
+
+function testKirimData() {
+  var hasil = handleSubmission({
+    nama: "Tamu Uji Coba",
+    ucapan: "Selamat untuk Kirana & Jarot!",
+    kehadiran: "Hadir",
+    jumlah: "2"
+  });
+  Logger.log(hasil.getContent());
 }
