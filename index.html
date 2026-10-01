@@ -651,9 +651,22 @@
     <script>
         (function () {
             var music = document.getElementById("music");
+            var START_TIME = 38;
+            var hasStarted = false;
+
+            function setStartTime() {
+                if (!hasStarted && music) {
+                    try {
+                        music.currentTime = START_TIME;
+                    } catch (err) {}
+                }
+            }
+
             if (music) {
                 music.pause();
-                music.currentTime = 6;
+                setStartTime();
+                music.addEventListener("loadedmetadata", setStartTime);
+                music.addEventListener("canplay", setStartTime);
             }
 
             document.addEventListener("click", function (e) {
@@ -662,22 +675,24 @@
                     var m = document.getElementById("music");
                     if (m) {
                         try {
-                            m.currentTime = 6;
+                            m.currentTime = START_TIME;
                         } catch (err) {}
                         var onPlayOnce = function () {
                             try {
-                                if (m.currentTime < 5.8 || m.currentTime > 7.5) {
-                                    m.currentTime = 6;
+                                if (!hasStarted || m.currentTime < (START_TIME - 0.5) || m.currentTime > (START_TIME + 2.5)) {
+                                    m.currentTime = START_TIME;
                                 }
+                                hasStarted = true;
                             } catch (err) {}
                             m.removeEventListener("playing", onPlayOnce);
                         };
                         m.addEventListener("playing", onPlayOnce);
                         setTimeout(function () {
                             try {
-                                if (m.currentTime < 5.8 || m.currentTime > 7.5) {
-                                    m.currentTime = 6;
+                                if (!hasStarted || m.currentTime < (START_TIME - 0.5) || m.currentTime > (START_TIME + 2.5)) {
+                                    m.currentTime = START_TIME;
                                 }
+                                hasStarted = true;
                             } catch (err) {}
                         }, 50);
                     }
