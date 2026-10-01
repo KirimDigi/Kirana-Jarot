@@ -182,6 +182,63 @@
         .satumomen_cover #guestNameSlot {
             text-shadow: 0 1px 4px rgba(255, 255, 255, 0.6), 0 0 8px rgba(255, 255, 255, 0.35) !important;
         }
+
+        /* Ucapan & RSVP Styles */
+        #listUcapanContainer::-webkit-scrollbar {
+            width: 4px;
+        }
+        #listUcapanContainer::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+        #listUcapanContainer::-webkit-scrollbar-thumb {
+            background: var(--inv-accent, #9c8366);
+            border-radius: 4px;
+        }
+        .ucapan-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 10px 12px;
+            border-left: 3px solid var(--inv-base, #603D1D);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            text-align: left;
+            transition: transform 0.2s ease;
+        }
+        .ucapan-card:hover {
+            transform: translateY(-1px);
+        }
+        .badge-kehadiran {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .badge-kehadiran.hadir {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .badge-kehadiran.tidak-hadir {
+            background: #ffebee;
+            color: #c62828;
+        }
+        .badge-kehadiran.ragu {
+            background: #fff8e1;
+            color: #f57f17;
+        }
+        .btn-ucapan-theme {
+            background-color: var(--inv-base, #603D1D) !important;
+            border-color: var(--inv-base, #603D1D) !important;
+            color: #ffffff !important;
+            transition: all 0.3s ease;
+        }
+        .btn-ucapan-theme:hover, .btn-ucapan-theme:focus {
+            background-color: var(--inv-accent, #9c8366) !important;
+            border-color: var(--inv-accent, #9c8366) !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(96, 61, 29, 0.3) !important;
+        }
     </style>
 </head>
 
@@ -309,20 +366,42 @@
                                         </div>
                                     </li>
                                                                         <li class="satumomen_slide">
-                                        <div class="container-mobile " style="background-image: url(themes/soft-brown/bg.webp); ;">
+                                        <div class="container-mobile " style="background-image: url(themes/soft-brown/bg.webp); overflow-y: auto;">
                                             <div class="frame">
     <img class="frame-tl animate__animated animate__fadeInTopLeft w-100 animate__slower" src="themes/soft-brown/tl.webp" alt="frame">
     <img class="frame-tr animate__animated animate__fadeInTopRight w-100 animate__slower" src="themes/soft-brown/tr.webp" alt="frame">
     <img class="frame-bl animate__animated animate__fadeInBottomLeft w-100 animate__slower" src="themes/soft-brown/bl.webp" alt="frame">
     <img class="frame-br animate__animated animate__fadeInBottomRight w-100 animate__slower" src="themes/soft-brown/br.webp" alt="frame">
 </div>
-                                            <div class="d-flex justify-content-center align-items-center" style="height:100%;">
-    <div style="width:100%;">
+                                            <div class="d-flex justify-content-center align-items-center" style="height:100%; min-height: 100%;">
+    <div style="width:100%; padding: 0 16px;">
       <div class="text-center">
-    <div class="editable font-latin color-accent h4 mb-4 animate__animated animate__fadeInDown animate__slower">Do'a Untuk Pengantin</div>
-          <div class="editable mb-4 animate__animated animate__fadeInUp animate__slower">"Semoga Allah memberkahimu di waktu bahagia dan memberkahimu di waktu susah, dan mengumpulkan kalian berdua dalam kebaikan"<br><br>[HR. Abu Daud]</div>
+    <div class="editable font-latin color-accent h4 mb-3 animate__animated animate__fadeInDown animate__slower">Do'a Untuk Pengantin</div>
+          <div class="editable mb-3 animate__animated animate__fadeInUp animate__slower" style="font-size: 13.5px; line-height: 1.5;">"Semoga Allah memberkahimu di waktu bahagia dan memberkahimu di waktu susah, dan mengumpulkan kalian berdua dalam kebaikan"<br><br>[HR. Abu Daud]</div>
 
-          <div class="editable mb-4 animate__animated animate__fadeInUp animate__slower"></div><button class="btn-rsvp btn btn-primary rounded-pill mb-4 animate__animated animate__fadeInUp animate__slow">Konfirmasi &amp; Kirim Ucapan</button><div class="editable mb-4 animate__animated animate__fadeInUp animate__slower"></div>
+          <div class="d-flex flex-column align-items-center" style="gap: 10px; margin-bottom: 12px;">
+            <button class="btn-rsvp btn btn-primary rounded-pill animate__animated animate__fadeInUp animate__slow" style="font-size: 14px; padding: 9px 28px; min-width: 220px; box-shadow: 0 4px 12px rgba(96, 61, 29, 0.25);">Konfirmasi &amp; Kirim Ucapan</button>
+            <button id="btnToggleUcapan" class="btn btn-ucapan-theme rounded-pill animate__animated animate__fadeInUp animate__slow" style="font-size: 14px; padding: 9px 28px; min-width: 220px; box-shadow: 0 4px 12px rgba(96, 61, 29, 0.25);">Tampilkan Ucapan</button>
+          </div>
+
+          <!-- Container Daftar Ucapan -->
+          <div id="wrapperUcapan" style="display: none; width: 100%; max-width: 360px; margin: 0 auto; text-align: left;" class="animate__animated animate__fadeInUp animate__faster">
+              <div style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border-radius: 16px; padding: 12px 14px; box-shadow: 0 8px 24px rgba(96, 61, 29, 0.12); border: 1px solid rgba(156, 131, 102, 0.25);">
+                  <div class="d-flex justify-content-between align-items-center mb-2 pb-2" style="border-bottom: 1px solid rgba(96, 61, 29, 0.1);">
+                      <div style="font-weight: 600; font-size: 13px; color: var(--inv-base, #603D1D); display: flex; align-items: center; gap: 6px;">
+                          <span>💌</span> <span>Ucapan &amp; Do'a</span> <span id="ucapanListBadge" style="background: var(--inv-accent, #9c8366); color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 10px; font-weight: 600;">0</span>
+                      </div>
+                      <button id="btnRefreshUcapan" type="button" style="border: none; background: transparent; color: var(--inv-accent, #9c8366); font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 4px; padding: 2px 6px;">
+                          🔄 Muat Ulang
+                      </button>
+                  </div>
+                  <div id="listUcapanContainer" style="max-height: 200px; overflow-y: auto; padding-right: 4px; display: flex; flex-direction: column; gap: 8px;">
+                      <div class="text-center py-3" style="color: #888; font-size: 13px;">
+                          Memuat ucapan...
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
     </div>
   </div>
@@ -505,11 +584,54 @@
         <!-- startRSVPModal -->
         <div class="modal fade" id="rsvpModal" tabindex="-1" role="dialog" aria-labelledby="rsvpModal">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content p-4" style="height:100%">
-                    <!-- rsvp form -->
-                                        <rsvp-component :lang="{&quot;invitation_code&quot;:&quot;Kode Undangan&quot;,&quot;validate_code&quot;:&quot;Validasi Kode Undangan&quot;,&quot;name&quot;:&quot;Nama&quot;,&quot;group_name&quot;:&quot;Nama Grup&quot;,&quot;phone&quot;:&quot;No Hp \/ WhatsApp&quot;,&quot;attendance&quot;:&quot;Kehadiran?&quot;,&quot;yes&quot;:&quot;Hadir&quot;,&quot;no&quot;:&quot;Tidak Hadir&quot;,&quot;guest&quot;:&quot;Orang&quot;,&quot;guest_count&quot;:&quot;Jumlah Tamu&quot;,&quot;comment&quot;:&quot;Komentar atau Ucapan&quot;,&quot;send&quot;:&quot;Kirim&quot;,&quot;update&quot;:&quot;Kirim&quot;,&quot;captcha_placeholder&quot;:&quot;Ketik Text&quot;}" :invitation_id="339223" name="Nama Tamu" code="" :replace="false" overlay="1"></rsvp-component>
-                                        <!-- rsvp form -->
-                    <button onclick="closeModal(rsvpModal)" type="button" class="btn btn-close"><svg xmlns="http://www.w3.org/2000/svg" height="42px" width="42px" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                <div class="modal-content p-4" style="height:auto; max-height: 90vh; overflow-y: auto; border-radius: 20px; border: 1px solid rgba(156, 131, 102, 0.3); box-shadow: 0 12px 36px rgba(0,0,0,0.25); position: relative;">
+                    <div class="text-center mb-3">
+                        <div class="font-latin color-accent h3 mb-1" style="font-size: 26px;">Konfirmasi &amp; Ucapan</div>
+                        <div style="font-size: 13px; color: #777;">Kirim doa restu dan konfirmasi kehadiran Anda</div>
+                    </div>
+
+                    <form id="formRsvp">
+                        <div class="form-group mb-3 text-left">
+                            <label style="font-size: 12.5px; font-weight: 600; color: var(--inv-base, #603D1D); margin-bottom: 4px;">Nama Tamu</label>
+                            <input type="text" id="rsvpNama" class="form-control" placeholder="Nama Anda" required style="border-radius: 10px; font-size: 14px; border: 1px solid #d8cbbe;">
+                        </div>
+
+                        <div class="form-group mb-3 text-left">
+                            <label style="font-size: 12.5px; font-weight: 600; color: var(--inv-base, #603D1D); margin-bottom: 4px;">Konfirmasi Kehadiran</label>
+                            <select id="rsvpKehadiran" class="form-control" required style="border-radius: 10px; font-size: 14px; border: 1px solid #d8cbbe;">
+                                <option value="Hadir">Hadir</option>
+                                <option value="Tidak Hadir">Tidak Hadir</option>
+                                <option value="Masih Ragu">Masih Ragu</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3 text-left" id="rsvpJumlahGroup">
+                            <label style="font-size: 12.5px; font-weight: 600; color: var(--inv-base, #603D1D); margin-bottom: 4px;">Jumlah Tamu</label>
+                            <select id="rsvpJumlah" class="form-control" style="border-radius: 10px; font-size: 14px; border: 1px solid #d8cbbe;">
+                                <option value="1">1 Orang</option>
+                                <option value="2">2 Orang</option>
+                                <option value="3">3 Orang</option>
+                                <option value="4">4 Orang</option>
+                                <option value="5">5 Orang</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3 text-left">
+                            <label style="font-size: 12.5px; font-weight: 600; color: var(--inv-base, #603D1D); margin-bottom: 4px;">Ucapan &amp; Doa</label>
+                            <textarea id="rsvpUcapan" class="form-control" rows="3" placeholder="Tuliskan doa restu untuk Kirana & Jarot..." required style="border-radius: 10px; font-size: 14px; border: 1px solid #d8cbbe;"></textarea>
+                        </div>
+
+                        <div id="rsvpAlert" style="display: none; font-size: 13px;" class="mb-3"></div>
+
+                        <div class="text-center">
+                            <button type="submit" id="btnSubmitRsvp" class="btn btn-primary rounded-pill w-100" style="padding: 10px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 12px rgba(96, 61, 29, 0.25);">
+                                <span class="btn-text">Kirim Ucapan</span>
+                                <span class="btn-spinner" style="display: none;">Mengirimkan...</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <button onclick="closeModal(rsvpModal)" type="button" class="btn btn-close" style="position: absolute; top: 14px; right: 14px;"><svg xmlns="http://www.w3.org/2000/svg" height="28px" width="28px" fill="none" viewbox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 18 6M6 6l12 12"></path>
                         </svg></button>
                 </div>
@@ -718,6 +840,264 @@
         
     </script>
 
+
+    <!-- ========================================================================= -->
+    <!-- SCRIPT GOOGLE APPS SCRIPT: RSVP & UCAPAN INTEGRATION                      -->
+    <!-- ========================================================================= -->
+    <script>
+        (function () {
+            // URL Google Apps Script Web App
+            var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyeo3zQs6mGFR-SY2YlVBOmELThMls277qYJq-EgXFF8tJ7Rv1ZEZLIbRwgmt3e3QAH/exec";
+
+            // Data ucapan murni dari spreadsheet (tanpa data sample/dummy)
+            var cachedWishes = [];
+            var isFetching = false;
+            var hasLoadedOnce = false;
+
+            var btnToggle = document.getElementById("btnToggleUcapan");
+            var wrapper = document.getElementById("wrapperUcapan");
+            var listContainer = document.getElementById("listUcapanContainer");
+            var badgeCount = document.getElementById("ucapanListBadge");
+            var btnRefresh = document.getElementById("btnRefreshUcapan");
+            var formRsvp = document.getElementById("formRsvp");
+            var rsvpAlert = document.getElementById("rsvpAlert");
+            var btnSubmit = document.getElementById("btnSubmitRsvp");
+            var inputNama = document.getElementById("rsvpNama");
+            var selectKehadiran = document.getElementById("rsvpKehadiran");
+            var jumlahGroup = document.getElementById("rsvpJumlahGroup");
+            var selectJumlah = document.getElementById("rsvpJumlah");
+
+            // Auto-hide Jumlah Tamu jika "Tidak Hadir"
+            function updateJumlahVisibility() {
+                if (!selectKehadiran || !jumlahGroup) return;
+                if (selectKehadiran.value === "Tidak Hadir") {
+                    jumlahGroup.style.display = "none";
+                } else {
+                    jumlahGroup.style.display = "block";
+                }
+            }
+
+            if (selectKehadiran) {
+                selectKehadiran.addEventListener("change", updateJumlahVisibility);
+                updateJumlahVisibility();
+            }
+
+            // Prefill nama dari guestNameSlot / URL parameter
+            function prefillGuest() {
+                var slot = document.getElementById("guestNameSlot");
+                if (slot && slot.textContent && slot.textContent !== "Nama Tamu" && inputNama) {
+                    if (!inputNama.value) inputNama.value = slot.textContent.trim();
+                }
+            }
+
+            function escapeHtml(str) {
+                if (!str) return "";
+                return String(str)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            function renderWishes(wishes) {
+                if (!listContainer) return;
+                if (!wishes || wishes.length === 0) {
+                    listContainer.innerHTML = '<div class="text-center py-3" style="color: #888; font-size: 13px;">Belum ada ucapan. Jadilah yang pertama memberikan doa restu!</div>';
+                    if (badgeCount) badgeCount.textContent = "0";
+                    return;
+                }
+
+                if (badgeCount) badgeCount.textContent = wishes.length;
+
+                var html = "";
+                for (var i = 0; i < wishes.length; i++) {
+                    var w = wishes[i];
+                    var kehadiran = (w.kehadiran || "Hadir").toLowerCase();
+                    var badgeClass = "badge-kehadiran hadir";
+                    var badgeLabel = "✓ Hadir";
+
+                    if (kehadiran.indexOf("tidak") !== -1 || kehadiran.indexOf("batal") !== -1) {
+                        badgeClass = "badge-kehadiran tidak-hadir";
+                        badgeLabel = "✕ Berhalangan";
+                    } else if (kehadiran.indexOf("ragu") !== -1) {
+                        badgeClass = "badge-kehadiran ragu";
+                        badgeLabel = "? Ragu";
+                    }
+
+                    html += '<div class="ucapan-card">' +
+                                '<div class="d-flex justify-content-between align-items-center mb-1">' +
+                                    '<div style="font-weight: 700; font-size: 13px; color: var(--inv-base, #603D1D);">' + escapeHtml(w.nama) + '</div>' +
+                                    '<span class="' + badgeClass + '">' + badgeLabel + '</span>' +
+                                '</div>' +
+                                '<div style="font-size: 12.5px; color: #444; line-height: 1.45; margin-bottom: 4px; word-break: break-word;">' + escapeHtml(w.ucapan) + '</div>' +
+                                '<div style="font-size: 10px; color: #9c8366;">' + escapeHtml(w.timestamp) + '</div>' +
+                            '</div>';
+                }
+                listContainer.innerHTML = html;
+            }
+
+            function fetchWishes(silent) {
+                if (!GOOGLE_SCRIPT_URL) return;
+
+                if (!silent && !hasLoadedOnce && listContainer) {
+                    listContainer.innerHTML = '<div class="text-center py-3" style="color: #8c6e54; font-size: 13px;">⏳ Memuat ucapan dari spreadsheet...</div>';
+                }
+
+                if (btnRefresh && !silent) {
+                    btnRefresh.innerHTML = '⏳ Memuat...';
+                }
+
+                isFetching = true;
+                fetch(GOOGLE_SCRIPT_URL + "?action=get&t=" + new Date().getTime())
+                    .then(function (res) { return res.json(); })
+                    .then(function (res) {
+                        if (res && res.status === "success" && Array.isArray(res.data)) {
+                            cachedWishes = res.data;
+                            hasLoadedOnce = true;
+                            renderWishes(res.data);
+                        }
+                    })
+                    .catch(function (err) {
+                        console.warn("Gagal memuat ucapan dari Google Apps Script:", err);
+                        if (!hasLoadedOnce && listContainer) {
+                            listContainer.innerHTML = '<div class="text-center py-3" style="color: #888; font-size: 13px;">Belum dapat memuat ucapan. Silakan tekan Muat Ulang.</div>';
+                        }
+                    })
+                    .finally(function () {
+                        isFetching = false;
+                        if (btnRefresh) {
+                            btnRefresh.innerHTML = '🔄 Muat Ulang';
+                        }
+                    });
+            }
+
+            // Toggle Tampilkan / Sembunyikan Ucapan
+            if (btnToggle && wrapper) {
+                btnToggle.addEventListener("click", function () {
+                    var isHidden = wrapper.style.display === "none" || !wrapper.style.display;
+                    if (isHidden) {
+                        wrapper.style.display = "block";
+                        btnToggle.textContent = "Sembunyikan Ucapan";
+                        if (!hasLoadedOnce) {
+                            fetchWishes(false);
+                        } else {
+                            renderWishes(cachedWishes);
+                        }
+                    } else {
+                        wrapper.style.display = "none";
+                        btnToggle.textContent = "Tampilkan Ucapan";
+                    }
+                });
+            }
+
+            if (btnRefresh) {
+                btnRefresh.addEventListener("click", function () {
+                    fetchWishes(false);
+                });
+            }
+
+            // Submit Form RSVP & Ucapan
+            if (formRsvp) {
+                formRsvp.addEventListener("submit", function (e) {
+                    e.preventDefault();
+
+                    var nama = (inputNama ? inputNama.value : "").trim();
+                    var kehadiran = selectKehadiran ? selectKehadiran.value : "Hadir";
+                    var jumlah = (kehadiran === "Tidak Hadir") ? "0" : (selectJumlah ? selectJumlah.value : "1");
+                    var ucapan = document.getElementById("rsvpUcapan") ? document.getElementById("rsvpUcapan").value : "";
+
+                    if (!nama || !ucapan) {
+                        alert("Mohon lengkapi nama dan ucapan Anda.");
+                        return;
+                    }
+
+                    var btnText = btnSubmit.querySelector(".btn-text");
+                    var btnSpinner = btnSubmit.querySelector(".btn-spinner");
+                    if (btnText && btnSpinner) {
+                        btnText.style.display = "none";
+                        btnSpinner.style.display = "inline";
+                    }
+                    btnSubmit.disabled = true;
+
+                    var payload = {
+                        nama: nama,
+                        kehadiran: kehadiran,
+                        jumlah: jumlah,
+                        ucapan: ucapan
+                    };
+
+                    // Optimistic update
+                    var now = new Date();
+                    var newEntry = {
+                        nama: nama,
+                        kehadiran: kehadiran,
+                        jumlah: jumlah,
+                        ucapan: ucapan,
+                        timestamp: "Baru saja"
+                    };
+                    cachedWishes.unshift(newEntry);
+                    renderWishes(cachedWishes);
+
+                    function onSubmissionSuccess() {
+                        if (rsvpAlert) {
+                            rsvpAlert.className = "alert alert-success py-2";
+                            rsvpAlert.textContent = "Alhamdulillah, doa restu & konfirmasi kehadiran Anda berhasil dikirim!";
+                            rsvpAlert.style.display = "block";
+                        }
+                        if (document.getElementById("rsvpUcapan")) {
+                            document.getElementById("rsvpUcapan").value = "";
+                        }
+                        setTimeout(function () {
+                            if (window.closeModal && window.rsvpModal) {
+                                window.closeModal(window.rsvpModal);
+                            }
+                            if (wrapper && btnToggle) {
+                                wrapper.style.display = "block";
+                                btnToggle.textContent = "Sembunyikan Ucapan";
+                            }
+                            if (rsvpAlert) {
+                                rsvpAlert.style.display = "none";
+                            }
+                        }, 1200);
+                    }
+
+                    // Kirim ke Google Apps Script via POST / GET fallback
+                    fetch(GOOGLE_SCRIPT_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(function () {
+                        onSubmissionSuccess();
+                        setTimeout(function() { fetchWishes(true); }, 1500);
+                    })
+                    .catch(function () {
+                        var fallbackUrl = GOOGLE_SCRIPT_URL + "?action=submit" +
+                            "&nama=" + encodeURIComponent(nama) +
+                            "&kehadiran=" + encodeURIComponent(kehadiran) +
+                            "&jumlah=" + encodeURIComponent(jumlah) +
+                            "&ucapan=" + encodeURIComponent(ucapan);
+                        fetch(fallbackUrl, { mode: "no-cors" });
+                        onSubmissionSuccess();
+                    })
+                    .finally(function () {
+                        if (btnText && btnSpinner) {
+                            btnText.style.display = "inline";
+                            btnSpinner.style.display = "none";
+                        }
+                        btnSubmit.disabled = false;
+                    });
+                });
+            }
+
+            prefillGuest();
+            // Muat ucapan asli dari spreadsheet di background secara otomatis
+            fetchWishes(true);
+            window.addEventListener("load", prefillGuest);
+        })();
+    </script>
 
     <script id="loader-safety">
         window.addEventListener('load', function() {
