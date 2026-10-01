@@ -176,6 +176,32 @@
             line-height: 3 !important;
         }
         #YTMusic {display: block}
+
+        /* Cover page harmonious integration filter */
+        .satumomen_cover .container-mobile.cover {
+            background-image: 
+                linear-gradient(180deg, rgba(245, 236, 223, 0.4) 0%, rgba(245, 236, 223, 0.1) 32%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.12) 80%, rgba(0, 0, 0, 0.28) 100%), 
+                url(coverpage2.jpeg) !important;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+
+        .satumomen_cover .editable {
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 12px rgba(255, 255, 255, 0.6);
+        }
+
+        .satumomen_cover .guest-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 4px 18px rgba(96, 61, 29, 0.12);
+            border-radius: 14px;
+        }
+
+        .satumomen_cover .guest-card .editable {
+            text-shadow: none !important;
+        }
     </style>
 </head>
 
@@ -209,7 +235,7 @@
                                             <div class="d-flex justify-content-center align-items-center flex-column" style="height:100%;">
         <div style="width:100%;" class="mb-5"><div class="editable text-center animate__animated animate__fadeInDown animate__slower" style="font-size:14.4px;">THE WEDDING OF</div>
 <div class="editable color-accent text-center animate__animated animate__fadeInDown animate__slower font-latin" style="font-size:60px;">Kirana &amp; Jarot</div><div class="editable text-center animate__animated animate__fadeInUp animate__slower" style="font-size:14.4px;">SABTU, 21 NOVEMBER 2026</div><div class="editable text-center animate__animated animate__fadeInUp animate__slower" style="font-size:14.4px;"></div></div><div style="width:100%;"><div class="text-center">
-<div style="border-radius:0.5rem;padding:10px;max-width:290px;margin:auto;">
+<div class="guest-card" style="border-radius:14px;padding:12px 18px;max-width:290px;margin:0 auto 12px auto;">
 <div class="editable mb-2 animate__animated animate__fadeInUp animate__slower" style="font-size:14.4px;">Kepada Yth;<br>Bapak/Ibu/Saudara/i</div>
 
 <div id="guestNameSlot" class="editable color-accent h5 mb-2 font-weight-bold animate__animated animate__fadeInUp animate__slower" style="font-size:18px;">Tamu Undangan</div>
