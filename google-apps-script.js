@@ -1,6 +1,6 @@
 /**
  * =========================================================================
- * GOOGLE APPS SCRIPT: RSVP & UCAPAN PERNIKAHAN KIRANA & JAROT
+ * GOOGLE APPS SCRIPT: RSVP & UCAPAN NGUNDUH MANTEN JAROT & KIRANA
  * =========================================================================
  * Spreadsheet ID: 144ha50NKgdG1JR2cto0nupENZ2W-mDt-KkGWn9xAwD8
  * Sheet Name    : Sheet1
@@ -240,7 +240,7 @@ function testBacaData() {
 function testKirimData() {
   var hasil = handleSubmission({
     nama: "Tamu Uji Coba",
-    ucapan: "Selamat untuk Kirana & Jarot!",
+    ucapan: "Selamat untuk Jarot & Kirana!",
     kehadiran: "Hadir",
     jumlah: "2"
   });
